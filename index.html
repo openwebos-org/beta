@@ -466,16 +466,16 @@ function initWidgets(){
   fetchWeatherWidget();
   updateDesktopTop();
 }
-let _wClockIv=null,_wWeatherCache=null,_widgetBarOpen=true;
-  _widgetBarOpen=!_widgetBarOpen;
-  const bar=document.getElementById('widget-bar');
-  bar.querySelectorAll('.widget').forEach(w=>w.style.display=_widgetBarOpen?'':'none');
-  bar.querySelector('.widget-close-btn').textContent=_widgetBarOpen?'^':'v';
+let _wClockIv = null, _wWeatherCache = null, _widgetBarOpen = true;
+
+function toggleWidgetBar(){
+  _widgetBarOpen = !_widgetBarOpen;
+  const bar = document.getElementById('widget-bar');
+  if(!bar) return;
+  bar.querySelectorAll('.widget').forEach(w => w.style.display = _widgetBarOpen ? '' : 'none');
+  const btn = bar.querySelector('.widget-close-btn');
+  if(btn) btn.textContent = _widgetBarOpen ? '^' : 'v';
   updateDesktopTop();
-}
-function updateDesktopTop(){
-  const bar=document.getElementById('widget-bar');
-  document.getElementById('desktop').style.top=_widgetBarOpen?'126px':(bar.offsetHeight+46)+'px';
 }
 
 function buildAllWidgets(bar){
